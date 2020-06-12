@@ -1,0 +1,8 @@
+---
+- name: First Playbook
+  become: true
+
+  tasks:
+    - name: echo hello world
+      raw: echo 'Hello World'
+
