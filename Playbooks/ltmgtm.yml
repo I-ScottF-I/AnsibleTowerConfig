@@ -12,7 +12,7 @@
 
   tasks:
     - name: Create a pool
-      f5networks.f5_modules.bigip_pool:
+      bigip_pool:
         provider: "{{ provider }}"
         lb_method: ratio-member
         name: web
@@ -20,7 +20,7 @@
       delegate_to: localhost
 
     - name: Add members to pool
-      f5networks.f5_modules.bigip_pool_member:
+      bigip_pool_member:
         provider: "{{ provider }}"
         description: "webserver {{ item.name }}"
         host: "{{ item.host }}"
@@ -35,7 +35,7 @@
       delegate_to: localhost
 
     - name: Create a VIP
-      f5networks.f5_modules.bigip_virtual_server:
+      bigip_virtual_server:
         provider: "{{ provider }}"
         description: foo-vip
         destination: 172.16.10.108
