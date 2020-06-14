@@ -1,5 +1,6 @@
 - name: Create a VIP, pool and pool members
   hosts: F5VM
+  connection: local
 
 #pretty sure you can pass in tower creds but for now since its a lab stick to this
   vars:
