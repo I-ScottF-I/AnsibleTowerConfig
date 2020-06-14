@@ -2,4 +2,4 @@
 
 collections:
 #F5's official modules from galaxy
-- src: f5networks.f5_modules
+- f5networks.f5_modules
