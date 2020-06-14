@@ -1,3 +1,6 @@
+#inventory for ansible tower
+#only contains hosts no tags or groups yet
+
 all: 
   hosts:
     F5VM:
