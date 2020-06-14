@@ -73,4 +73,4 @@
         name: testwip.scottslab
         pool_lb_method: round-robin
         pools: 
-          name: vip-1_pool
+        -  name: vip-1_pool
