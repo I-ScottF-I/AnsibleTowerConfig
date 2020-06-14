@@ -48,7 +48,7 @@
       bigip_gtm_virtual_server:
         provider: "{{ provider }}"
         address: 172.16.10.108
-        name: vip-1
+        name: bigip1
         server_name: vip-1
         port: 80
         
