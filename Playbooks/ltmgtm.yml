@@ -72,5 +72,6 @@
         provider: "{{ provider }}"
         name: testwip.scottslab
         pool_lb_method: round-robin
+        type: a
         pools: 
         -  name: vip-1_pool
