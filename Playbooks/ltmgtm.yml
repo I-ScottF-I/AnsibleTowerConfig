@@ -35,7 +35,7 @@
     - name: Create a VIP
       bigip_virtual_server:
         provider: "{{ provider }}"
-        description: foo-vip
+        description: VS made by ansible tower
         destination: 172.16.10.108
         name: vip-1
         pool: web
@@ -43,3 +43,27 @@
         snat: Automap
         profiles:
           - http
+
+    - name: Create a GTM VS
+      bigip_gtm_virtual_server:
+        provider: "{{ provider }}"
+        description: VS made by ansible tower
+        address: 172.16.10.108
+        name: vip-1
+        port: 80
+        
+    - name: Create a GTM pool
+      bigip_gtm_pool:
+        provider: "{{ provider }}"
+        members:
+          virtual server: vip-1
+        name: vip-1_pool
+        preferred_lb_method: round robin
+        type: a
+
+    - name: Create a GTM WIP
+      bigip_gtm_wide_ip:
+        provider: "{{ provider }}"
+        name: testwip.scottslab
+        pool_lb_method: round robin
+        pool: vip-1_pool
