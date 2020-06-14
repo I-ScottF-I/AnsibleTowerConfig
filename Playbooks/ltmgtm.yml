@@ -6,6 +6,7 @@
   vars:
     provider:
       password: admin
+      server: localhost
       user: admin
       validate_certs: no
       server_port: 443
