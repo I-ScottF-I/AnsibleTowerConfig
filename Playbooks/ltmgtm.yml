@@ -56,7 +56,7 @@
       bigip_gtm_pool:
         provider: "{{ provider }}"
         name: vip-1_pool
-        preferred_lb_method: round robin
+        preferred_lb_method: round-robin
         type: a
 
     - name: Add members to GTM pool
