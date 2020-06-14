@@ -49,6 +49,7 @@
         provider: "{{ provider }}"
         address: 172.16.10.108
         name: vip-1
+        server_name: vip-1
         port: 80
         
     - name: Create a GTM pool
