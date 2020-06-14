@@ -71,5 +71,5 @@
       bigip_gtm_wide_ip:
         provider: "{{ provider }}"
         name: testwip.scottslab
-        pool_lb_method: round robin
+        pool_lb_method: round-robin
         pool: vip-1_pool
