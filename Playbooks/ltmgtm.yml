@@ -48,8 +48,8 @@
       bigip_gtm_virtual_server:
         provider: "{{ provider }}"
         address: 172.16.10.108
-        name: bigip1
-        server_name: vip-1
+        name: vip-1
+        server_name: bigip1
         port: 80
         
     - name: Create a GTM pool
