@@ -7,8 +7,7 @@
     provider:
       user: admin
       password: admin
-      f5server: 192.168.1.100
-      f5serverport: 443
+      server: 192.168.1.100
       validate_certs: no
 
   tasks:
