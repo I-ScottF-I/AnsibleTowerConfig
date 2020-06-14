@@ -2,11 +2,11 @@
   hosts: F5VM
   connection: local
 
-#pretty sure you can pass in tower creds but for now since its a lab stick to this
+#pass in credentials from tower
   vars:
     provider:
-      user: admin
-      password: admin
+      user: "{{ username }}"
+      password: "{{ password }}"
       server: 192.168.1.100
       validate_certs: no
 
