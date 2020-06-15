@@ -13,7 +13,7 @@
 
   tasks:
       - name: Remove a GTM WIP
-      bigip_gtm_wide_ip:
+        bigip_gtm_wide_ip:
         provider: "{{ provider }}"
         name: testwip.scottslab
         state: absent
