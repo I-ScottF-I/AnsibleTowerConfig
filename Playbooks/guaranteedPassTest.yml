@@ -1,0 +1,21 @@
+#test used for testing workflows with a guaranteed pass
+
+- name: Test that should pass if F5 is on
+  hosts: F5VM
+  connection: local
+
+#pass in credentials from tower
+  vars:
+    provider:
+      user: "{{ username }}"
+      password: "{{ password }}"
+      server: 192.168.1.100
+      validate_certs: no
+
+#check virtual servers. This will pas even if none exist
+  tasks:
+    - name: Check Virtual Servers that exist
+      bigip_device_info:
+        provider: "{{ provider }}"
+        gather_subset:
+          - virtual-servers
