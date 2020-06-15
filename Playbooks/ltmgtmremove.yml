@@ -18,25 +18,25 @@
           name: testwip.scottslab
           state: absent
 
-    - name: Remove a GTM pool
+      - name: Remove a GTM pool
         bigip_gtm_pool:
           provider: "{{ provider }}"
           name: vip-1_pool
           state: absent
 
-    - name: Remove a GTM VS
+      - name: Remove a GTM VS
         bigip_gtm_virtual_server:
           provider: "{{ provider }}"
           name: vip-1
           state: absent  
 
-    - name: Remove a VS
+      - name: Remove a VS
         bigip_virtual_server:
           provider: "{{ provider }}"
           name: vip-1
           state: absent
 
-    - name: Remove a pool
+      - name: Remove a pool
         bigip_pool:
           provider: "{{ provider }}"
           name: web
