@@ -26,8 +26,7 @@
         name: "{{ item.name }}"
         pool: Pool_{{ appname }}
         port: "{{ serverport }}"
-      with_items:
-        - host: "{{serverIPs.split('\n')}}"
+      with_items: "{{serverIPs.split('\n')}}"
 
     - name: Create a HTTP VS
       bigip_virtual_server:
