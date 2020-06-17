@@ -27,10 +27,7 @@
         pool: Pool_{{ appname }}
         port: "{{ serverport }}"
       with_items:
-        - host: 10.10.10.10
-          name: web01
-        - host: 10.10.10.20
-          name: web02
+        - host: "{{serverIPs.split('\n')}}"
 
     - name: Create a HTTP VS
       bigip_virtual_server:
