@@ -15,7 +15,7 @@
       bigip_pool:
         provider: "{{ provider }}"
         lb_method: round-robin
-        name: Pool_"{{ appname }}"
+        name: Pool_{{ appname }}
         slow_ramp_time: 120
 
     - name: Add members to pool
@@ -24,7 +24,7 @@
         description: "webserver {{ item.name }}"
         host: "{{ item.host }}"
         name: "{{ item.name }}"
-        pool: Pool_"{{ appname }}"
+        pool: Pool_{{ appname }}
         port: "{{ serverport }}"
       with_items:
         - host: 10.10.10.10
@@ -37,8 +37,8 @@
         provider: "{{ provider }}"
         description: VS made by ansible tower
         destination: "{{ listenerIP }}"
-        name: VS_"{{ appname }}"
-        pool: Pool_"{{ appname }}"
+        name: VS_{{ appname }}
+        pool: Pool_{{ appname }}
         port: "{{ listenerport}}"
         snat: Automap
 
@@ -46,22 +46,22 @@
       bigip_gtm_virtual_server:
         provider: "{{ provider }}"
         address: "{{ listenerIP }}"
-        name: VS_"{{ appname }}"
+        name: VS_{{ appname }}
         server_name: bigip1
         port: "{{ listenerport}}"
         
     - name: Create a GTM pool
       bigip_gtm_pool:
         provider: "{{ provider }}"
-        name: GTMPool_"{{ appname }}"
+        name: GTMPool_{{ appname }}
         preferred_lb_method: round-robin
         type: a
 
     - name: Add members to GTM pool
       bigip_gtm_pool_member:
-        pool: GTMPool_"{{ appname }}"
+        pool: GTMPool_{{ appname }}
         server_name: bigip1
-        virtual_server: VS_"{{ appname }}"
+        virtual_server: VS_{{ appname }}
         type: a
         provider: "{{ provider }}"
 
@@ -72,4 +72,4 @@
         pool_lb_method: round-robin
         type: a
         pools: 
-        -  name: GTMPool_"{{ appname }}"
+        -  name: GTMPool_{{ appname }}
