@@ -68,7 +68,7 @@
     - name: Create a GTM WIP
       bigip_gtm_wide_ip:
         provider: "{{ provider }}"
-        name: "{{ appname }}".scottlab
+        name: ""{{ appname }}".scottlab"
         pool_lb_method: round-robin
         type: a
         pools: 
