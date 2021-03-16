@@ -1,5 +1,6 @@
 ---
 - name: PUSH AS3
+  hosts: F5VM
   connection: local
   gather_facts: false
 
