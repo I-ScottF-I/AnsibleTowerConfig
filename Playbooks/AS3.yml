@@ -6,7 +6,7 @@
   tasks:
     - name: CREATE AS3 JSON BODY
       set_fact:
-        as3_app_body: "j2/as3_dec.json"
+        as3_app_body: "{{ lookup('file', j2/as3_dec.json) }}"
 
     - name: POST AS3 BODY
       uri:
