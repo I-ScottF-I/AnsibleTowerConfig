@@ -21,12 +21,9 @@
     - name: Add members to pool
       bigip_pool_member:
         provider: "{{ provider }}"
-        description: "webserver {{ item.name }}"
-        host: "{{ item.host }}"
-        name: "{{ item.name }}"
+        host: "{{ serverIP }}"
         pool: Pool_{{ appname }}
         port: "{{ serverport }}"
-      with_items: "{{serverIPs.split('\n')}}"
 
     - name: Create a HTTP VS
       bigip_virtual_server:
