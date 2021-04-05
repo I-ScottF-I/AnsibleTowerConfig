@@ -16,4 +16,4 @@
         user: "{{ ansible_user }}"
         password: "{{ ansible_ssh_pass }}"
         validate_certs: no
-        body: "{{ lookup ('file','as3_dec.json') }}"
+        body: "{{ lookup ('file','j2/as3_dec.json') }}"
