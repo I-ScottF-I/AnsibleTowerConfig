@@ -5,7 +5,6 @@
       "class": "ADC",
       "schemaVersion": "3.0.0",
       "id": "UDP_DNS_Sample",
-      "updateMode": "selective",
       "NetworkServices": {
         "class": "Tenant",
         "VS_DNS_LB": {

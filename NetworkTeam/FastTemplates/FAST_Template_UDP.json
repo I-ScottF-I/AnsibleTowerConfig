@@ -5,20 +5,19 @@
       "class": "ADC",
       "schemaVersion": "3.0.0",
       "id": "UDP_DNS_Sample",
-      "updateMode": "selective",
       "{{tennant_name}}": {
         "class": "Tenant",
-        "VS_{{ApplicationName}}": {
+        "VS_{{application_name}}": {
           "class": "Application",
-          "VS_{{VirtualServerName}}": {
+          "VS_{{application_name}}": {
             "class": "Service_UDP",
             "virtualPort": 53,
             "virtualAddresses": [
               "192.168.1.190"
             ],
-            "pool": "Pool_{{ApplicationName}}"
+            "pool": "Pool_{{application_name}}"
           },
-          "Pool_{{ApplicationName}}": {
+          "Pool_{{application_name}}": {
             "class": "Pool",
             "monitors": [
               "icmp"
