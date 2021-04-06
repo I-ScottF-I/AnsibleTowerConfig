@@ -1,0 +1,19 @@
+---
+- name: DELETE AS3
+  hosts: F5VM
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: DELETE AS3 BODY
+      uri:
+        url: "https://192.168.1.100/mgmt/shared/appsvcs/declare"
+        method: DELETE
+        status_code: 200
+        timeout: 300
+        body_format: json
+        force_basic_auth: yes
+        user: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
+        validate_certs: no
+        body: "{{ lookup ('file','j2/as3_dec.json') }}"
