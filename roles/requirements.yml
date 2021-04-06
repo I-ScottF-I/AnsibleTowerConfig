@@ -1,5 +1,0 @@
-#ansible roles file
-
-collections:
-#F5's official modules from galaxy
-- f5networks.f5_modules
