@@ -10,7 +10,7 @@
         "class": "Tenant",
         "VS_DNS_LB": {
           "class": "Application",
-          "service": {
+          "VS_DNS_LB": {
             "class": "Service_UDP",
             "virtualPort": 53,
             "virtualAddresses": [
