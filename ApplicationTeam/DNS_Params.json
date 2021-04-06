@@ -1,4 +1,5 @@
 { 
     "tenant_name": "NetworkServices",
-    "application_name": "DNS_LB"
+    "VS": "VS_DNS_LB",
+    "pool": "Pool_DNS_LB"
 }
