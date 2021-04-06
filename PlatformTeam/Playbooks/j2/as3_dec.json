@@ -1,0 +1,39 @@
+{
+    "class": "AS3",
+    "action": "deploy",
+    "declaration": {
+      "class": "ADC",
+      "schemaVersion": "3.0.0",
+      "id": "UDP_DNS_Sample",
+      "updateMode": "selective",
+      "NetworkServices": {
+        "class": "Tenant",
+        "VS_DNS_LB": {
+          "class": "Application",
+          "service": {
+            "class": "Service_UDP",
+            "virtualPort": 53,
+            "virtualAddresses": [
+              "192.168.1.190"
+            ],
+            "pool": "Pool_DNS_LB"
+          },
+          "Pool_DNS_LB": {
+            "class": "Pool",
+            "monitors": [
+              "icmp"
+            ],
+            "members": [
+              {
+                "servicePort": 53,
+                "serverAddresses": [
+                  "8.8.8.8",
+                  "8.8.4.4"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+   }
