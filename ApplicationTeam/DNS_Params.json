@@ -1,5 +1,8 @@
 { 
-    "tenant_name": "NetworkServices",
-    "VS": "VS_DNS_LB",
-    "pool": "Pool_DNS_LB"
+    "application_group": "NetworkServices",
+    "application_name": "External_DNS",
+    "listener_address": "192.168.1.190",
+    "listener_port": 53,
+    "pool_port": 53,
+    "server_addresses": [ "8.8.8.8", "8.8.4.4" ]
 }
