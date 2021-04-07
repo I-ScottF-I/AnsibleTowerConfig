@@ -1,0 +1,14 @@
+{
+    "name": "FastTemplates/FAST_Template_L4",
+    "parameters": {
+        "application_group": "ExampleFWDApps",
+        "application_name": "TowerSSH",
+        "protocol": "tcp",
+        "listener_port": 22,
+        "listener_address": "192.168.1.191",
+        "pool_port": 22,
+        "server_addresses": [
+            "192.168.1.101"
+        ]
+    }
+}

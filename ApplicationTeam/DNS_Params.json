@@ -1,5 +1,5 @@
 {
-    "name": "FAST_Template_UDP/FAST_Template_UDP",
+    "name": "FastTemplates/FAST_Template_UDP",
     "parameters": {
         "application_group": "NetworkServices",
         "application_name": "External_DNS",
