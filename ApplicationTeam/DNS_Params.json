@@ -1,7 +1,7 @@
 {
     "name": "FastTemplates/FAST_Template_UDP",
     "parameters": {
-        "application_group": "NetworkServices",
+        "application_group": "PlatformServices",
         "application_name": "External_DNS",
         "listener_address": "192.168.1.190",
         "listener_port": 53,
