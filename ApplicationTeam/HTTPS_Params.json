@@ -1,0 +1,13 @@
+{
+    "name": "FastTemplates/FAST_Template_HTTPS",
+    "parameters": {
+        "application_group": "NetworkServices2",
+        "application_name": "TowerHTTPS",
+        "listener_address": "192.168.1.198",
+        "listener_port": 443,
+        "pool_port": 80,
+        "server_addresses": [
+            "192.168.1.101"
+        ]
+    }
+}

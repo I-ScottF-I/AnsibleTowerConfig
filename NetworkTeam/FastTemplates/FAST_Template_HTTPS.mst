@@ -1,0 +1,46 @@
+{
+    "class": "AS3",
+    "action": "deploy",
+    "declaration": {
+      "class": "ADC",
+      "schemaVersion": "3.0.0",
+      "id": "UDP_DNS_Sample",
+      "{{application_group}}": {
+        "class": "Tenant",
+        "{{application_name}}": {
+          "class": "Application",
+          "VS_{{application_name}}": {
+            "class": "Service_HTTPS",
+            "virtualPort": {{listener_port::integer}},
+            "virtualAddresses": [
+              "{{listener_address}}"
+            ],
+            "pool": "pool_{{application_name}}",
+            "serverTLS": "clientTLS_{{application_name}}"
+          },
+          "pool_{{application_name}}": {
+            "class": "Pool",
+            "monitors": [
+              "tcp"
+            ],
+            "members": [{
+              "servicePort": {{pool_port::integer}},
+              "serverAddresses": {{server_addresses::array}},
+              "shareNodes": true
+            }]
+          },
+          "clientTLS_{{application_name}}": {
+            "class": "TLS_Server",
+            "certificates": [{
+              "certificate": "certificateAS3"
+            }]
+          },
+          "certificateAS3": {
+            "class": "Certificate",
+            "certificate": "-----BEGINCERTIFICATE-----\MnIIDrjCCApagAwIBAgIEFRHMSTANBgkqhkiG9w0BAQsFADCBmDELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAldBMRAwDgYDVQQHEwdTZWF0dGxlMRIwEAYDVQQKEwlNeUNvbXBhbnkxCzAJBgNVBAsTAklUMR4wHAYDVQQDExVsb2NhbGhvc3QubG9jYWxkb21haW4xKTAnBgkqhkiG9w0BCQEWGnJvb3RAbG9jYWxob3N0LmxvY2FsZG9tYWluMB4XDTIxMDMxNTE1MDU0NVoXDTMxMDMxMzE1MDU0NVowgZgxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJXQTEQMA4GA1UEBxMHU2VhdHRsZTESMBAGA1UEChMJTXlDb21wYW55MQswCQYDVQQLEwJJVDEeMBwGA1UEAxMVbG9jYWxob3N0LmxvY2FsZG9tYWluMSkwJwYJKoZIhvcNAQkBFhpyb290QGxvY2FsaG9zdC5sb2NhbGRvbWFpbjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAIbkiRtviuzEoHlYyoM1/RdXj7nys4/CNeoSPHNT5RzwLRCSx4D/vMEKHxvqQmgQGuevUvd4OLOEvknXCnQgh5mcLDudEOnUb4d5iY+fFJQIy1czo0Jv4e9Cgs3MXvf5YAoAAGb75b8K3WNPN7Y+oR5nb8y/mRWLzWChnueHHJokvYek8Tu3rZh9vfqKTWvYGu0x07nD+5UDOzKqvRSwaVBQb2BSn6lV3YXeoPxgfILYmlqylDDuSBYmixZtXhhXhNuOVV2QCbQlBPMixVGOOQq/g0nY9buNic6xZqKIj7EyBsS2laRUS4ZiVEO/Dz22DO4ge6hTCcyhsKW+Qmb9z0kCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAhds2FgUtJVMOxU3EN3Te+S55g3iOlEnLJ7rh7uJAwdPE/G9KjLJWMEcHiZ11UmHif7wfWlf9Y9OPSEpD1oTbB2ij8+kITFv9DuekLoksLLbicnDZVMjr5hqeXlaNlXvMQZZpImHtDvplUDoHPGhAF64/dfeVVuTNoLzE3XG+Ea8mTvQdINkfTTXnLf5olKm5qcueTn33snbBhQM974ulH1pD17QplyaORamNgrUbPMfj94Vdxa1OtN4Y9Q02kbA4Ykcf2yTOq8bf1whC5V8gdpQtgZHYW8wvnylNrMeB81sA3uGDPnzSO+nrGyDTObmnTdG4+U80k0vZbnbz8bCz3w==\n-----ENDCERTIFICATE-----",
+            "privateKey": "-----BEGINPRIVATEKEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCG5Ikbb4rsxKB5WMqDNf0XV4+58rOPwjXqEjxzU+Uc8C0QkseA/7zBCh8b6kJoEBrnr1L3eDizhL5J1wp0IIeZnCw7nRDp1G+HeYmPnxSUCMtXM6NCb+HvQoLNzF73+WAKAABm++W/Ct1jTze2PqEeZ2/Mv5kVi81goZ7nhxyaJL2HpPE7t62Yfb36ik1r2BrtMdO5w/uVAzsyqr0UsGlQUG9gUp+pVd2F3qD8YHyC2JpaspQw7kgWJosWbV4YV4TbjlVdkAm0JQTzIsVRjjkKv4NJ2PW7jYnOsWaiiI+xMgbEtpWkVEuGYlRDvw89tgzuIHuoUwnMobClvkJm/c9JAgMBAAECggEADli9nVmkbrCt+aIALerez238ZxRBVUOcXNgSLljoqAaCYH4f8mAguO5E50Dnza4S0nvi6NeUPkGaxHs2zSmNioCh8rgujZQOxZufThNnCqSRzeU70qvYHYyXIWDAZALVnFKqOEnHwmUbLT4GaJ9qHvP039Or6i77ibC+2BSWbe1dYx2Ni+4KqEEMSOn2e03b4/l4/T6SPRZ1w0Pi4K5Dnf9YRS5//+y/f72WZ9CSUa8RSyai1zJ8i8b3J4AOQbrtdopsfdt2fpbMUf6FOznzVYOs1ft+9HjAXxCf/bYrEm/0BcaCNhR5C2xCEyTAqih/d1OBcWUmF0rBQiN/864RoQKBgQC9KjPOgvfvT7CGXoi2N7ifLjifmeGHtLJmgMIrsNChsoTU2kq+4UfVBMMo1Pv0pEtx4i6Kcr481DVhHrx8j7BzYTSiFGjzxYtkvyC3YS/nhTA1s0WX92c5qwa6IDmpVQnrbBfDypAbMmv2pZ8yP5j4viErDmhH47KNEsK4mxXh8QKBgQC2jXcidxhmfE3vwzjcNshLVgeTGAza7YVrw+1Ro0wfyiB4mHVDqfTqFc3/GCkqO3nnjlf71E3SMRMTPAYibhUpPearJkNhZ7nUeVr9tJsnxeM/0/QZhLtlVCNSW67w6k9ChFDZAl79nsrx1c9KRPuIaw5kCv0OtZXl/sSzZJvq2QKBgQCImRoSDVc2s6f4T/mPA8vI/tqavcczdNPC20XbwPHXYg8zmXKSRiHV/HtlV++daKqmUTtkdJlVWbQ2LrjThftYRiB4zh4/si4HkVDxuzeZiv8WOB+QLnKXHR5dd3nMAoGIRGUg2HyZdx6pXE4KPgybysguzFeXWiCMaLi+EBeMMQKBgQCJJMASuWwwWkRm0sAd2F4jEs9/9zp5IqXwbvIUOdzPqRc54jd+jOk9DwKCGVGbs7ECf9Kjkzyfo1SUR6zIIvFs2V84xvcp7zYRZNYx8YP6nlT6N66TmT77gflDPzOvNCg1bZgbYAei+6+1fQ5M2oQpWVwnVoYEjfC+J+b4aqYkCQKBgH72hYaA2PoaqALJ5TJKDBzaXboYLnCqXluoexIHAzbFoLhwB6M+TlbnEH1bHCop70qOPRk4LnhPjTATeBGaOsHkE3lOpDbsJgshnJPUfYITT2m5JL89YJFLAtCqGLtELHslbqzjmRDvV5PgLWlJePHiJMXLVTc+bwEyCDBY2Qv6\n-----ENDPRIVATEKEY-----"
+          }
+        }
+      }
+    }
+}
