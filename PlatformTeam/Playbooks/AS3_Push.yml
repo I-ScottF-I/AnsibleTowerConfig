@@ -4,16 +4,29 @@
   connection: local
   gather_facts: false
 
+  vars:
+    declaration:
+      name: FastTemplates/FAST_Template_UDP
+      parameters:
+         application_group: PlatformServices
+         application_name: External_DNS
+         listener_address: 192.168.1.190
+         listener_port: 53
+         pool_port: 53
+         server_addresses:
+           - 8.8.8.8
+           - 8.8.4.4 
+
   tasks:
     - name: POST AS3 BODY
       uri:
         url: "https://192.168.1.100/mgmt/shared/fast/applications"
         method: POST
-        status_code: 200
+        status_code: 202
         timeout: 300
         body_format: json
         force_basic_auth: yes
         user: "{{ ansible_user }}"
         password: "{{ ansible_ssh_pass }}"
         validate_certs: no
-        body: { "name": "FastTemplates/FAST_Template_UDP", "parameters": { "application_group": "{{application_group}}", "application_name": "{{application_name}}", "listener_address": "{{listener_address}}", "listener_port": {{listener_port}}, "pool_port": {{pool_port}}, "server_addresses": [ {{server_addresses}} ] } }
+        body: "{{declaration| to_json}}"
