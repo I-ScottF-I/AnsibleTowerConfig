@@ -7,7 +7,7 @@
   tasks:
     - name: POST AS3 BODY
       uri:
-        url: "https://192.168.1.100/mgmt/shared/appsvcs/declare"
+        url: "https://192.168.1.100/mgmt/shared/fast/applications"
         method: POST
         status_code: 200
         timeout: 300
@@ -16,4 +16,4 @@
         user: "{{ ansible_user }}"
         password: "{{ ansible_ssh_pass }}"
         validate_certs: no
-        body: "{{ lookup ('file','j2/as3_dec.json') }}"
+        body: { "name": "FastTemplates/FAST_Template_UDP", "parameters": { "application_group": "{{application_group}}", "application_name": "{{application_name}}", "listener_address": "{{listener_address}}", "listener_port": {{listener_port}}, "pool_port": {{pool_port}}, "server_addresses": [ {{server_addresses}} ] } }
