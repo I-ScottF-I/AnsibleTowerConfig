@@ -1,0 +1,38 @@
+---
+- name: Update Infrasturcture
+  hosts: F5VM
+  connection: local
+  gather_facts: false
+
+  vars:
+    - provider:
+        user: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
+        server: 192.168.1.100    
+  
+  tasks:
+    - name: Import Infrastructure Vars
+      include_vars: infrastructure.yml
+
+    - name: Update DNS resolver
+      f5networks.f5_modules.bigip_device_dns:
+        provider: "{{provider}}"
+        name_servers: "{{objects.dnsresolver.addresses}}"
+
+    - name: Update NTP servers
+      f5networks.f5_modules.bigip_device_ntp:
+        provider: "{{provider}}"
+        ntp_servers: "{{objects.dnsresolver.addresses}}"
+
+    - name: Update SNMP server
+      f5networks.f5_modules.bigip_snmp_community:
+        provider: "{{provider}}"
+        name: "{{item.name}}"
+        version: "{{item.version}}"
+        snmp_auth_protocol: "{{item.snmp_auth_protocol}}"
+        snmp_auth_password: "{{item.snmp_auth_password}}"
+        snmp_privacy_protocol: "{{item.snmp_privacy_protocol}}"
+        snmp_privacy_password: "{{item.snmp_privacy_password}}"
+        oid: "{{item.oid}}"
+        access: "{{item.access}}"
+      loop: "{{objects.snmp}}"

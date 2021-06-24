@@ -1,0 +1,28 @@
+---
+objects:
+  dnsresolver:
+    addresses:
+    - 8.8.8.8
+    - 8.8.4.4
+  ntp:
+    addresses:
+    - pool.ntp.org
+  snmp:
+    - snmp_server1:
+      name: primary
+      version: v3
+      snmp_auth_protocol: sha
+      snmp_auth_password: secret
+      snmp_privacy_protocol: aes
+      snmp_privacy_password: secret
+      oid: .1
+      access: rw
+    - snmp_server2:
+      name: secondary
+      version: v3
+      snmp_auth_protocol: sha
+      snmp_auth_password: secret
+      snmp_privacy_protocol: aes
+      snmp_privacy_password: secret
+      oid: .1
+      access: rw
