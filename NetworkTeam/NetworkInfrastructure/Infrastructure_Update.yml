@@ -28,7 +28,7 @@
     - name: Update SNMP server
       f5networks.f5_modules.bigip_snmp_community:
         provider: "{{provider}}"
-        name: "{{item.name}}"
+        snmp_username: "{{item.name}}"
         version: "{{item.version}}"
         snmp_auth_protocol: "{{item.snmp_auth_protocol}}"
         snmp_auth_password: "{{item.snmp_auth_password}}"
