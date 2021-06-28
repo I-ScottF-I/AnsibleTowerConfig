@@ -12,17 +12,17 @@ objects:
       name: primary
       version: v3
       snmp_auth_protocol: sha
-      snmp_auth_password: secret
+      snmp_auth_password: secret12
       snmp_privacy_protocol: aes
-      snmp_privacy_password: secret
+      snmp_privacy_password: secret12
       oid: .1
       access: rw
     - snmp_server2:
       name: secondary
       version: v3
       snmp_auth_protocol: sha
-      snmp_auth_password: secret
+      snmp_auth_password: secret12
       snmp_privacy_protocol: aes
-      snmp_privacy_password: secret
+      snmp_privacy_password: secret12
       oid: .1
       access: rw
