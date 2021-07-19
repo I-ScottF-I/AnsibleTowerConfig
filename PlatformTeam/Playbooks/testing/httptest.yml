@@ -1,7 +1,6 @@
 ---
 - name: test
   hosts: F5VM
-  connection: local
 
   tasks:
   - name: run a curl request
