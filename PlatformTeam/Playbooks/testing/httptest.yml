@@ -1,0 +1,13 @@
+---
+- name: test
+  hosts: F5VM
+  connection: local
+
+  tasks:
+  - name: run a curl request
+    ansible.builtin.command:
+      cmd: curl http://192.168.1.195 -o /dev/null -s -w "%{http_code}\n"
+    register: shell_result
+
+  - debug:
+      var: shell_result.stdout_lines
